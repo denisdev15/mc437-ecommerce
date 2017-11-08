@@ -1,0 +1,52 @@
+<div class="container" ng-init="getProduct()">
+	<div class="card">
+		<div class="container-fliud">
+			<div class="wrapper row">
+				<div class="preview col-md-6">
+
+					<div class="preview-pic tab-content">
+					  <div class="tab-pane active" id="pic-1"><img ng-src="{{product.img[0]}}" /></div>
+					  <div class="tab-pane" id="pic-2"><img ng-src="{{product.img[1]}}" /></div>
+						<div class="tab-pane" id="pic-3"><img ng-src="{{product.img[2]}}" /></div>
+						<div class="tab-pane" id="pic-4"><img ng-src="{{product.img[3]}}" /></div>
+						<div class="tab-pane" id="pic-5"><img ng-src="{{product.img[4]}}" /></div>
+					</div>
+					<ul class="preview-thumbnail nav nav-tabs">
+					  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img ng-src="{{product.img[0]}}" /></a></li>
+					  <li><a data-target="#pic-2" data-toggle="tab"><img ng-src="{{product.img[1]}}" /></a></li>
+					  <li><a data-target="#pic-3" data-toggle="tab"><img ng-src="{{product.img[2]}}" /></a></li>
+					  <li><a data-target="#pic-4" data-toggle="tab"><img ng-src="{{product.img[3]}}" /></a></li>
+					  <li><a data-target="#pic-5" data-toggle="tab"><img ng-src="{{product.img[4]}}" /></a></li>
+					</ul>
+
+				</div>
+				<div class="details col-md-6">
+					<h3 class="product-title">{{product.name}}</h3>
+					<div class="rating">
+						<div class="stars">
+							<span class="fa fa-star checked"></span>
+							<span class="fa fa-star checked"></span>
+							<span class="fa fa-star checked"></span>
+							<span class="fa fa-star checked"></span>
+							<span class="fa fa-star"></span>
+						</div>
+						<!-- <span class="review-no">41 reviews</span> -->
+					</div>
+					<p class="product-description">{{product.description}}</p>
+					<h4 class="price">preço atual: <span>R${{product.price}}</span></h4>
+					<p class="vote"><strong>91%</strong> dos compradores gostaram do produto! <strong>(87 votos)</strong></p>
+					<!-- <h5 class="sizes">sizes:
+						<span class="size" data-toggle="tooltip" title="small">s</span>
+						<span class="size" data-toggle="tooltip" title="medium">m</span>
+						<span class="size" data-toggle="tooltip" title="large">l</span>
+						<span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+					</h5> -->
+					<h5 class="colors">cor: {{product.color}}</h5>
+					<div class="action">
+						<button class="add-to-cart btn btn-default" type="button">adicionar ao carrinho</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
