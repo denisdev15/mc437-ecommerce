@@ -35,13 +35,15 @@
     <!-- Load Controllers -->
     <script src="app/controllers/homepageController.js"></script>
     <script src="app/controllers/productController.js"></script>
+    <script src="app/controllers/navController.js"></script>
+    <script src="app/controllers/searchController.js"></script>
 
     <!-- Services  -->
     <script src="app/services/productModelService.js"></script>
     <script src="app/services/flashService.js"></script>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" ng-controller="NavCtrl">
       <div class="container">
         <a class="navbar-brand" href="#">E-commerce Grupo 02</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +57,9 @@
               </a>
             </li> -->
             <li class="nav-item">
-              <input type="text" name="search" id="search" class="form-control" ng-model="search" placeholder="Busca"/>
+              <form ng-submit="submitSearch()">
+                <input type="text" id="search" class="form-control" ng-model='search' placeholder='Busca'  ng-keyup="$event.keyCode == 13 && submitSearch()"/>
+              </form>
             </li>
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">

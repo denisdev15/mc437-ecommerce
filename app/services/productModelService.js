@@ -48,7 +48,7 @@
 
     function getProductsHighlighted() {
       var deferred = $q.defer();
-      $http.get(url + 'products?group=2&highlighted=true')
+      $http.get(url + 'products?group=2&highlighted=true&enabled=true')
       .success(function(response) {
         $log.info(response);
         deferred.resolve(response);
@@ -62,7 +62,7 @@
 
     function searchByName(name) {
       var deferred = $q.defer();
-      $http.get(url + 'products?group=2&name=' + name)
+      $http.get(url + 'products?group=2&enabled=true&name=' + name)
       .success(function(response) {
         $log.info(response);
         deferred.resolve(response);
@@ -71,6 +71,7 @@
         $log.error(response);
         deferred.reject([]);
       });
+      return deferred.promise;
     }
 
 

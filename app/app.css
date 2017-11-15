@@ -14,6 +14,11 @@
 
 
 /*****************globals*************/
+footer {
+  margin-top: 60px;
+}
+
+
 img {
   max-width: 100%; }
 
@@ -63,6 +68,7 @@ img {
 
 .card {
   margin-top: 50px;
+  margin-bottom: 10px;
   background: #eee;
   padding: 3em;
   line-height: 1.5em; }

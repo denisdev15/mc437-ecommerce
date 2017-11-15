@@ -1,0 +1,36 @@
+<div class="container" ng-init="getProducts()">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4" ng-repeat="product in products | orderBy: 'price'">
+      <div class="card h-100" ng-if="product.stock > 0">
+        {{product.name}}
+        <a ng-href="#/product/{{product._id}}"><img class="card-img-top" ng-src="{{product.img[0]}}" alt="product.name"></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            <a ng-href="#/product/{{product._id}}">{{product.name}}</a>
+          </h4>
+          <h5>R${{product.price}}</h5>
+          <p class="card-text">{{product.description}}</p>
+        </div>
+      </div>
+    </div>
+    <div ng-if="products.length == 0" class="row" ng-init="getProductsHighlighted()">
+      <h3>Produto não existente em nossa loja!</h4>
+      <br />
+      <h3>Produtos em destaque hoje:</h3>
+      <br />
+      <div class="col-lg-4 col-md-6 mb-4" ng-repeat="product in productsHighlighted | orderBy: 'price'">
+        <div class="card h-100" ng-if="product.stock > 0">
+          {{product.name}}
+          <a ng-href="#/product/{{product._id}}"><img class="card-img-top" ng-src="{{product.img[0]}}" alt="product.name"></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a ng-href="#/product/{{product._id}}">{{product.name}}</a>
+            </h4>
+            <h5>R${{product.price}}</h5>
+            <p class="card-text">{{product.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
