@@ -16,6 +16,10 @@ app.config( ['$routeProvider', function($routeProvider)
     templateUrl: 'app/views/search.html',
     controller: 'SearchCtrl'
   })
+  .when('/cart', {
+    templateUrl: 'app/views/cart.html',
+    controller: 'CartCtrl'
+  })
 
   // caso não seja nenhum desses, redirecione para a rota '/'
   .otherwise ({ redirectTo: '/home' });
