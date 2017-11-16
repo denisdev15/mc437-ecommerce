@@ -6,6 +6,10 @@
     "bower": "^1.7.7",
     "http-server": "^0.9.0"
   },
+  "dependencies": {
+    "startbootstrap-shop-homepage": "^4.0.0-beta",
+    "startbootstrap-shop-item": "^4.0.0-beta"
+  },
   "scripts": {
     "postinstall": "bower install",
     "prestart": "npm install",
