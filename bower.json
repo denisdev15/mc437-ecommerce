@@ -4,11 +4,12 @@
   "version": "1.0.0",
   "private": false,
   "dependencies": {
-    "angular": "1.5.x",
-    "angular-mocks": "1.5.x",
-    "angular-resource": "1.5.x",
-    "angular-route": "1.5.x",
-    "angular-cookies": "1.5.x",
-    "bootstrap": "3.3.x"
+    "angular": "1.2.x",
+    "angular-mocks": "1.2.x",
+    "angular-resource": "1.2.x",
+    "angular-route": "1.2.x",
+    "angular-cookies": "1.2.x",
+    "bootstrap": "3.3.x",
+    "angular-input-masks": "^2.6.0"
   }
 }

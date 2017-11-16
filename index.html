@@ -28,6 +28,8 @@
     <script src="node_modules/startbootstrap-shop-homepage/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="/bower_components/angular/angular.min.js"></script>
+    <!-- Masks  -->
+    <script src="bower_components/angular-input-masks/angular-input-masks-standalone.js"></script>
     <script src="/bower_components/angular-route/angular-route.min.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.min.js"></script>
     <script src="app/app.js"></script>
@@ -72,8 +74,8 @@
             </ul>
           </ul>
           <li class="nav-item">
-            <div class="cart ">
-              CART
+            <div class="cart">
+              <a class="btn btn-warning pull-right" href="#/cart">Carrinho ({{cart.length}})</a>
             </div>
           </li>
         </div>
