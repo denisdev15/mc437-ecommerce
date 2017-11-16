@@ -45,7 +45,7 @@
         <td ng-show="frete != null">Frete: R${{frete | roundTo: 2}}</td>
         <td ng-hide="frete != null"></td>
         <td class="hidden-xs text-center"><strong>Total R${{total | roundTo: 2}}</strong></td>
-        <td><a href="#" ng-disabled="frete == null" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+        <td><a href="#/checkout" ng-disabled="frete == null" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
       </tr>
     </tfoot>
   </table>

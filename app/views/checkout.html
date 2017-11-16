@@ -1,0 +1,117 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Detalhes de pagamento
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                      <div ng-class="(method == 'cartao') ? 'btn-info' : ''" class="col-6 btn" ng-click="method='cartao'">
+                        Cartão
+                      </div>
+                      <div ng-class="(method == 'boleto') ? 'btn-info' : ''" class="col-6 btn" ng-click="method='boleto'">
+                        Boleto
+                      </div>
+                    </div>
+                    <div class="row">
+                    
+                    <!-- Cartão -->
+                    <div ng-show="method=='cartao'" style="margin-top:15px" class="col-4">
+                      <form role="form">
+                      <div class="form-group">
+                          <label for="cardNumber">
+                              Numero do Cartão</label>
+                          <div class="input-group">
+                              <input type="text" class="form-control" id="cardNumber" placeholder="Numero de cartão válido"
+                                  required autofocus />
+                              <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="cardName">
+                              Nome do Proprietário</label>
+                          <div class="input-group">
+                              <input type="text" class="form-control" id="cardNname" placeholder="Como escrito no cartão"
+                                  required />
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-7 col-md-7">
+                              <div class="form-group">
+                                  <label for="expityMonth">
+                                      Data de expiração</label>
+                                  <div class="col-xs-6 col-lg-6 pl-ziro">
+                                      <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+                                  </div>
+                                  <div class="col-xs-6 col-lg-6 pl-ziro">
+                                      <input type="text" class="form-control" id="expityYear" placeholder="YY" required /></div>
+                              </div>
+                          </div>
+                          <div class="col-xs-5 col-md-5 pull-right">
+                              <div class="form-group">
+                                  <label for="cvCode">
+                                      CV</label>
+                                  <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+                              </div>
+                          </div>
+                      </div>
+                      </form>
+                    </div>
+
+                    <!-- Endereço -->
+                    <div class="col-4" style="margin-top:15px">
+                      <form role="form">
+                      <div class="form-group">
+                          <label for="destinataryName">
+                              Nome do destinatario</label>
+                          <div class="input-group">
+                              <input type="text" class="form-control" id="destinataryName" placeholder="João da Silva"
+                                  required />
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="address">
+                              Endereço</label>
+                          <div class="input-group">
+                              <input type="text" class="form-control" id="address" placeholder="Rua Servidor próprio vale 2 pontos a mais"
+                                  required />
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-3 col-md-3">
+                              <div class="form-group">
+                                  <label for="number">
+                                      Numero</label>
+                                      <input type="text" class="form-control" id="number" placeholder="10" required />
+                              </div>
+                          </div>
+                          <div class="col-xs-8 col-md-8 pull-right">
+                              <div class="form-group">
+                                  <label for="cep">
+                                      CEP</label>
+                                  <input type="text" class="form-control" id="cep" placeholder="01222004" required />
+                              </div>
+                          </div>
+                      </div>
+                      </form>
+                    </div>
+
+                    <!-- Review do pedido -->
+                    <div class="col-4" style="margin-top:15px">
+                      <p>Inserir aqui a review do pedido</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
+                </li>
+            </ul>
+            <br/>
+            <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+        </div>
+    </div>
+</div>
