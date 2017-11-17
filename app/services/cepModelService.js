@@ -4,7 +4,8 @@
   var app = angular.module('app');
   var url = 'http://mc437-cep.herokuapp.com/s/cep/';
   var config = {headers:  {
-        'auth-token': 'mN5E52087AdquCg7XraJNpxy8G3qhNFi0PXso6G0gi0DJmchfvjfwejebhKKx60i'}
+        'auth-token': 'mN5E52087AdquCg7XraJNpxy8G3qhNFi0PXso6G0gi0DJmchfvjfwejebhKKx60i',
+        'Accept': 'application/json'}
   };
 
   app
