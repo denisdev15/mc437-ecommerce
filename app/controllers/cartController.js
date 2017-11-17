@@ -4,7 +4,7 @@
   var app = angular.module('app');
 
   app
-  .controller('CartCtrl', ['$scope', '$rootScope', '$routeParams', 'ProductModelService', function($scope, $rootScope, $routeParams, ProductModelService) {
+  .controller('CartCtrl', ['$scope', '$rootScope', '$routeParams', 'ProductModelService', 'CepModelService' , function($scope, $rootScope, $routeParams, ProductModelService, CepModelService) {
     $scope.products = [];
     $rootScope.frete = null;
     $scope.getCart = function() {
@@ -38,9 +38,10 @@
     }
     
     $scope.calcShipping = function() {
-      //@TODO: STUB
-      console.log("calculou o frete");
-      $rootScope.frete = 14;
+      $rootScope.frete = CepModelService.getCep($scope.cep).then(function(payload) {
+        console.log(payload);
+//      $rootScope.frete 
+      });
     }
 
   }]);
