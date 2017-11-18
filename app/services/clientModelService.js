@@ -74,6 +74,7 @@
 // objeto client -> username: (cpf do cliente), password: (string)
 // retorna objeto do usuário autenticado contendo: token e id
     function authenticateClient(client){
+      console.log(client);
       var deferred = $q.defer();
       $http({
         method:'POST',

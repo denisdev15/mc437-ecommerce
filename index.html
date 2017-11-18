@@ -23,42 +23,62 @@
   <body ng-app="app">
 
     <!-- Bootstrap core JavaScript -->
-    <script src="node_modules/startbootstrap-shop-homepage/vendor/jquery/jquery.min.js"></script>
-    <script src="node_modules/startbootstrap-shop-homepage/vendor/popper/popper.min.js"></script>
-    <script src="node_modules/startbootstrap-shop-homepage/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="/node_modules/startbootstrap-shop-homepage/vendor/jquery/jquery.min.js"></script> -->
+    <!-- <script src="/node_modules/startbootstrap-shop-homepage/vendor/popper/popper.min.js"></script> -->
+    <!-- <script src="/node_modules/startbootstrap-shop-homepage/vendor/bootstrap/js/bootstrap.min.js"></script> -->
 
-    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
     <!-- Masks  -->
     <script src="bower_components/angular-input-masks/angular-input-masks-standalone.js"></script>
-    <script src="/bower_components/angular-route/angular-route.min.js"></script>
-    <script src="/bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
     <script src="app/app.js"></script>
 
     <!-- Load Controllers -->
+    <script src="app/controllers/loginController.js"></script>
+    <script src="app/controllers/registerController.js"></script>
     <script src="app/controllers/homepageController.js"></script>
     <script src="app/controllers/cartController.js"></script>
     <script src="app/controllers/productController.js"></script>
     <script src="app/controllers/navController.js"></script>
     <script src="app/controllers/searchController.js"></script>
     <script src="app/controllers/checkoutController.js"></script>
+    <script src="app/controllers/profileController.js"></script>
 
     <!-- Services  -->
     <script src="app/services/productModelService.js"></script>
+    <script src="app/services/authenticationService.js"></script>
     <script src="app/services/flashService.js"></script>
     <script src="app/services/cepModelService.js"></script>
     <script src="app/services/clientModelService.js"></script>
 
 
+    <script type="text/javascript">
+      function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
+
 
     <!-- Navigation -->
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" ng-controller="NavCtrl">
-      <div class="container">
         <a class="navbar-brand" href="#">E-commerce Grupo 02</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav mr-auto" ng-show="checkPage()">
             <!-- <li class="nav-item active">
               <a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>
@@ -71,23 +91,22 @@
             </li>
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('/login') }}">Login</a>
+                <a class="nav-link" href="#/login">Logar</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('/register') }}">Register</a>
+                <a class="nav-link" href="#/register">Registrar</a>
               </li>
             </ul>
           </ul>
-          <li class="nav-item">
+          <li class="nav-item" ng-show="checkPage()">
             <div class="cart">
               <a class="btn btn-warning pull-right" href="#/cart">Carrinho ({{cart.length}})</a>
             </div>
           </li>
         </div>
-      </div>
     </nav>
 
-    <!-- <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div> -->
+    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
     <div ng-view></div>
 
     <!-- Footer -->
