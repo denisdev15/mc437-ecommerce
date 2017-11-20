@@ -50,6 +50,6 @@
       return deferred.promise;
     }
 
-
+  }
 
 })();
