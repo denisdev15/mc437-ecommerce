@@ -48,7 +48,7 @@
 
       $rootScope.globals = {
         currentUser: {
-          userId: userId,
+          id: userId,
           token: token
         }
       };
@@ -65,7 +65,7 @@
     function ClearCredentials() {
       $rootScope.globals = {};
       $cookies.remove('globals');
-      // $http.defaults.headers.common.Authorization = 'Basic';
+      $http.defaults.headers.common.Authorization = 'Basic';
     }
   }
 

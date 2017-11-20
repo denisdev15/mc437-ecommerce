@@ -14,13 +14,12 @@
     $scope.login = function() {
       $scope.dataLoading = true;
       ClientModelService.authenticateClient($scope.user).then(function (response) {
-        console.log('payload');
-        if (response.payload) {
+        if (! response['error_code']) {
           console.log(response);
-          AuthenticationService.SetCredentials(response.id, response.token);
+          AuthenticationService.SetCredentials(response.payload.id, response.payload.token);
           $location.path('/home');
         } else {
-          FlashService.Error(response);
+          FlashService.Error(response['error_code']);
           $scope.dataLoading = false;
         }
       });
