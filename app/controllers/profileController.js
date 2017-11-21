@@ -97,13 +97,13 @@
     function getClientInfo(authClient) {
       return ClientModelService.getClient(authClient).then(function(user) {
         $scope.user = user.payload;
-        return ClientModelService.getAddress(authClient).then(function(address) {
-          if(address['error_code']) {
+        return ClientModelService.getAddress(authClient).then(function(response) {
+          if(response['error_code']) {
             $scope.address = [];
             $scope.hasAddress = false;
           }
           else {
-            $scope.address = address[0];
+            $scope.address = response.payload.addresses[0];
             $scope.hasAddress = true;
           }
         });
@@ -118,13 +118,8 @@
         for(var i=0; i<orders.size(); i++) {
           var order = orders[i];
           // TODO Consultar logistica e pagamento
-          //   promises.push(
           for (var product in order.products) {
-          //     ProductModelService.getProductById(product).then(function(response) {
-          //       products.push(response);
-          //     });
             products.push(JSON.parse(product));
-          // );
           }
           orders[i].products = products;
         }

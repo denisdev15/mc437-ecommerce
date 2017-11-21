@@ -99,7 +99,7 @@
 
           <ul class="navbar-nav" ng-if="!userLogged">
             <li class="nav-item col-sm-4">
-              <a class="nav-link" href="#/login">Logar</a>
+              <a class="nav-link" href="#/login">Entrar</a>
             </li>
             <li class="nav-item col-sm-4">
               <a class="nav-link" href="#/register">Registrar</a>
@@ -111,7 +111,7 @@
               <a class="nav-link" href="#/profile">Perfil</a>
             </li>
             <li class="nav-item col-sm-4">
-              <a class="nav-link" href="">Deslogar</a>
+              <a class="nav-link" ng-href="#/home" ng-click="logout()">Sair</a>
             </li>
           </ul>
 

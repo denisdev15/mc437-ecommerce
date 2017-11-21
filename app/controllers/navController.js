@@ -4,7 +4,7 @@
   var app = angular.module('app');
 
   app
-  .controller('NavCtrl', ['$scope', '$location', '$rootScope', function($scope, $location, $rootScope) {
+  .controller('NavCtrl', ['$scope', '$location', '$rootScope', 'AuthenticationService', function($scope, $location, $rootScope, AuthenticationService) {
     $scope.search = '';
 
     $scope.checkPage = function() {
@@ -26,6 +26,10 @@
 
     $scope.submitSearch = function() {
       $location.path('/search/' + $scope.search);
+    };
+
+    $scope.logout = function() {
+      AuthenticationService.ClearCredentials();
     };
 
   }]);
