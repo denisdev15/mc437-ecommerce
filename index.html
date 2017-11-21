@@ -1,127 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="content-language" content="pt-br" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Grupo 2">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-language" content="pt-br" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Grupo 2">
 
-    <title>MC437 - e-commerce</title>
+  <title>MC437 - e-commerce</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="node_modules/startbootstrap-shop-homepage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="node_modules/startbootstrap-shop-homepage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="node_modules/startbootstrap-shop-homepage/css/shop-homepage.css" rel="stylesheet">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="app/app.css">
+  <!-- Custom styles for this template -->
+  <link href="node_modules/startbootstrap-shop-homepage/css/shop-homepage.css" rel="stylesheet">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="app/app.css">
 
-  </head>
+</head>
 
-  <body ng-app="app">
+<body ng-app="app">
 
-    <!-- Bootstrap core JavaScript -->
-    <!-- <script src="/node_modules/startbootstrap-shop-homepage/vendor/jquery/jquery.min.js"></script> -->
-    <!-- <script src="/node_modules/startbootstrap-shop-homepage/vendor/popper/popper.min.js"></script> -->
-    <!-- <script src="/node_modules/startbootstrap-shop-homepage/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+  <!-- Bootstrap core JavaScript -->
+  <!-- <script src="/node_modules/startbootstrap-shop-homepage/vendor/jquery/jquery.min.js"></script> -->
+  <!-- <script src="/node_modules/startbootstrap-shop-homepage/vendor/popper/popper.min.js"></script> -->
+  <!-- <script src="/node_modules/startbootstrap-shop-homepage/vendor/bootstrap/js/bootstrap.min.js"></script> -->
 
-    <script src="bower_components/angular/angular.min.js"></script>
-    <!-- Masks  -->
-    <script src="bower_components/angular-input-masks/angular-input-masks-standalone.js"></script>
-    <script src="bower_components/angular-route/angular-route.min.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-    <script src="app/app.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <!-- Masks  -->
+  <script src="bower_components/angular-input-masks/angular-input-masks-standalone.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+  <script src="app/app.js"></script>
 
-    <!-- Load Controllers -->
-    <script src="app/controllers/loginController.js"></script>
-    <script src="app/controllers/registerController.js"></script>
-    <script src="app/controllers/homepageController.js"></script>
-    <script src="app/controllers/cartController.js"></script>
-    <script src="app/controllers/productController.js"></script>
-    <script src="app/controllers/navController.js"></script>
-    <script src="app/controllers/searchController.js"></script>
-    <script src="app/controllers/checkoutController.js"></script>
-    <script src="app/controllers/profileController.js"></script>
+  <!-- Load Controllers -->
+  <script src="app/controllers/loginController.js"></script>
+  <script src="app/controllers/registerController.js"></script>
+  <script src="app/controllers/homepageController.js"></script>
+  <script src="app/controllers/cartController.js"></script>
+  <script src="app/controllers/productController.js"></script>
+  <script src="app/controllers/navController.js"></script>
+  <script src="app/controllers/searchController.js"></script>
+  <script src="app/controllers/checkoutController.js"></script>
+  <script src="app/controllers/profileController.js"></script>
 
-    <!-- Services  -->
-    <script src="app/services/productModelService.js"></script>
-    <script src="app/services/authenticationService.js"></script>
-    <script src="app/services/flashService.js"></script>
-    <script src="app/services/cepModelService.js"></script>
-    <script src="app/services/clientModelService.js"></script>
-    <script src="app/services/logisticModelService.js"></script>
-    <script src="app/services/serasaModelService.js"></script>
-    <script src="app/services/orderModelService.js"></script>
-    <script src="app/services/pagamentoModelService.js"></script>
-
-
-    <script type="text/javascript">
-      function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-      }
-    </script>
+  <!-- Services  -->
+  <script src="app/services/productModelService.js"></script>
+  <script src="app/services/authenticationService.js"></script>
+  <script src="app/services/flashService.js"></script>
+  <script src="app/services/cepModelService.js"></script>
+  <script src="app/services/clientModelService.js"></script>
+  <script src="app/services/logisticModelService.js"></script>
+  <script src="app/services/serasaModelService.js"></script>
+  <script src="app/services/orderModelService.js"></script>
+  <script src="app/services/pagamentoModelService.js"></script>
 
 
-    <!-- Navigation -->
+  <script type="text/javascript">
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  </script>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" ng-controller="NavCtrl">
-        <a class="navbar-brand" href="#">E-commerce Grupo 02</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav mr-auto" ng-show="checkPage()">
-            <!-- <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li> -->
-            <li class="nav-item">
-              <form ng-submit="submitSearch()">
-                <input type="text" id="search" class="form-control" ng-model='search' placeholder='Busca'  ng-keyup="$event.keyCode == 13 && submitSearch()"/>
-              </form>
-            </li>
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#/login">Logar</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#/register">Registrar</a>
-              </li>
-            </ul>
-          </ul>
+
+  <!-- Navigation -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" ng-controller="NavCtrl">
+    <div class="container">
+      <a class="navbar-brand" href="#">E-commerce Grupo 02</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav mr-auto" ng-show="checkPage()">
+          <li class="nav-item navbar-search col-sm-12">
+            <form ng-submit="submitSearch()">
+              <input type="text" id="search" class="form-control" ng-model='search' placeholder='Busca'  ng-keyup="$event.keyCode == 13 && submitSearch()"/>
+            </form>
+          </li>
+
+
           <li class="nav-item" ng-show="checkPage()">
             <div class="cart">
               <a class="btn btn-warning pull-right" href="#/cart">Carrinho ({{cart.length}})</a>
             </div>
           </li>
-        </div>
-    </nav>
 
-    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-    <div ng-view></div>
+          <ul class="navbar-nav" ng-if="!userLogged">
+            <li class="nav-item col-sm-4">
+              <a class="nav-link" href="#/login">Logar</a>
+            </li>
+            <li class="nav-item col-sm-4">
+              <a class="nav-link" href="#/register">Registrar</a>
+            </li>
+          </ul>
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; MC437 Grupo 02 2017</p>
+          <ul class="navbar-nav" ng-if="userLogged">
+            <li class="nav-item col-sm-4">
+              <a class="nav-link" href="#/profile">Perfil</a>
+            </li>
+            <li class="nav-item col-sm-4">
+              <a class="nav-link" href="">Deslogar</a>
+            </li>
+          </ul>
+
+        </ul>
       </div>
+    </div>
+  </nav>
 
+  <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+  <div ng-view></div>
 
-    </footer>
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; MC437 Grupo 02 2017</p>
+    </div>
+  </footer>
 
-  </body>
+</body>
 
 </html>

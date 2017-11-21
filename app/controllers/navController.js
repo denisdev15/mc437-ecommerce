@@ -4,13 +4,18 @@
   var app = angular.module('app');
 
   app
-  .controller('NavCtrl', ['$scope', '$location', function($scope, $location) {
+  .controller('NavCtrl', ['$scope', '$location', '$rootScope', function($scope, $location, $rootScope) {
     $scope.search = '';
 
-
     $scope.checkPage = function() {
+      if($rootScope.globals.currentUser) {
+        $scope.userLogged = true;
+      }
+      else {
+        $scope.userLogged = false;
+      }
+
       var location = $location.path();
-      console.log(location);
       if(location == "/login" || location == "/register") {
         return false;
       }

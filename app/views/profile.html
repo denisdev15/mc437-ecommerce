@@ -97,66 +97,53 @@
           <!-- Form Name -->
           <legend>Endereço</legend>
 
-          <!-- Text input-->
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Rua</label>
-            <div class="col-sm-10">
-              <input type="text" ng-model="address.street" class="form-control" required>
+            <label class="col-sm-1 control-label" for="textinput">CEP</label>
+            <div class="col-sm-3">
+              <input type="text" ng-model="address.cep" class="form-control" required>
             </div>
-          </div>
 
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label"  for="textinput">Número</label>
-            <div class="col-sm-10">
+            <label class="col-sm-1 control-label"  for="textinput">Número</label>
+            <div class="col-sm-2">
               <input type="number" class="form-control" ng-model="address.number" required>
             </div>
-          </div>
 
-          <!-- Text input-->
-          <!-- <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Complemento</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control">
-            </div>
-          </div> -->
-
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Cidade</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" ng-model="address.city" required>
-            </div>
-          </div>
-
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Estado</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" ng-model="address.state" required>
-            </div>
-
-            <label class="col-sm-2 control-label" for="textinput">CEP</label>
-            <div class="col-sm-4">
-              <input type="text" ng-model="address.CEP" class="form-control" required>
-            </div>
-          </div>
-
-          <!-- Text input-->
-          <!-- <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">País</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control">
-            </div>
-          </div> -->
-
-          <div class="form-actions">
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="pull-right">
-                <!-- <button type="submit" class="btn btn-default">Cancelar</button> -->
-                <button type="submit" ng-disabled="formAddress.$invalid || dataLoading" class="btn btn-primary">Atualizar</button>
+            <div class="form-actions">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="pull-right">
+                  <!-- <button type="submit" class="btn btn-default">Cancelar</button> -->
+                  <button type="submit" ng-disabled="formAddress.$invalid || dataLoading" class="btn btn-primary">Atualizar</button>
+                </div>
               </div>
             </div>
+          </div>
+
+          <!-- <div class="form-group">
+          </div> -->
+
+
+          <div ng-if="! formAddress.$invalid && hasAddress">
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-sm-1 control-label" for="textinput">Rua</label>
+              <div class="col-sm-10">
+                <input type="text" ng-model="address.street" class="form-control" readonly>
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-sm-1 control-label" for="textinput">Cidade</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="address.city" readonly>
+              </div>
+
+              <label class="col-sm-1 control-label" for="textinput">Estado</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="address.state" readonly>
+              </div>
+            </div>
+
           </div>
 
         </fieldset>

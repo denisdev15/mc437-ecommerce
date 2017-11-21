@@ -25,20 +25,69 @@
     };
 
     $scope.editUser = function() {
-      return ClientModelService.editClient(getAuthClient(), $scope.user);
+      return ClientModelService.editClient(getAuthClient(), $scope.user)
+      .then(function(response) {
+        if(! response['error_code']) {
+          FlashService.Success('Perfil atualizado.');
+        }
+        else {
+          FlashService.Error('Erro: Não foi possível editar o perfil.');
+        }
+      });
     };
 
     $scope.editAddress = function() {
       if($scope.hasAddress) {
-        return ClientModelService.editAddress(getAuthClient(), $scope.address, 0);
+        var address = {
+          cep: $scope.address.cep,
+          number: $scope.address.number
+        };
+        console.log(address);
+        return ClientModelService.editAddress(getAuthClient(), address, 0)
+        .then(function(response) {
+          if(! response['error_code']) {
+            $scope.address = response.payload;
+            $scope.hasAddress = true;
+            FlashService.Success('Endereço atualizado.');
+          }
+          else {
+            FlashService.Error('Erro: Não foi possível editar o endereço.');
+          }
+        });
       }
       else {
-        return ClientModelService.addAddress(getAuthClient(), $scope.address);
+        var address = {
+          cep: $scope.address.cep,
+          number: $scope.address.number
+        };
+        console.log(address);
+        return ClientModelService.addAddress(getAuthClient(), address)
+        .then(function(response) {
+          if(! response['error_code']) {
+            $scope.address = response.payload;
+            $scope.hasAddress = true;
+            FlashService.Success('Endereço atualizado.');
+          }
+          else {
+            FlashService.Error('Erro: Não foi possível editar o endereço.');
+          }
+        });
       }
     };
 
     $scope.editPassword = function() {
-
+      var user = {
+        password: $scope.password
+      };
+      return ClientModelService.editClient(getAuthClient(), user)
+      .then(function(response) {
+        if(! response['error_code']) {
+          FlashService.Success('Senha atualizada.');
+        }
+        else {
+          FlashService.Error('Erro: Não foi possível atualizar a senha.');
+        }
+      });
     };
 
     function getAuthClient() {

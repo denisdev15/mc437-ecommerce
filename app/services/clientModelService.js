@@ -56,7 +56,7 @@
       $http({
         method:'POST',
         url: url + 'address/'+ authClient.id,
-        data: adress,
+        data: address,
         headers: {'Content-Type': 'application/json',
                     'X-Access-Token': authClient.token}
       })
