@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div class="row" ng-init="init()">
         <div class="col-xs-12 col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -44,10 +44,10 @@
                                   <label for="expityMonth">
                                       Data de expiração</label>
                                   <div class="col-xs-6 col-lg-6 pl-ziro">
-                                      <input type="text" class="form-control" id="expityMonth" ng-model="cartao_credito.data_expiracao_mes" placeholder="MM" required />
+                                      <input type="text" class="form-control" id="expityMonth" ng-model="data_expiracao_mes" placeholder="MM" required />
                                   </div>
                                   <div class="col-xs-6 col-lg-6 pl-ziro">
-                                      <input type="text" class="form-control" id="expityYear" ng-model="cartao_credito.data_expiracao_ano" placeholder="YY" required /></div>
+                                      <input type="text" class="form-control" id="expityYear" ng-model="data_expiracao_ano" placeholder="YY" required /></div>
                               </div>
                           </div>
                           <div class="col-xs-5 col-md-5 pull-right">
@@ -73,7 +73,7 @@
                           <label for="destinataryName">
                               Nome do destinatario</label>
                           <div class="input-group">
-                              <input type="text" class="form-control" id="destinataryName" placeholder="João da Silva"
+                              <input type="text" class="form-control" id="destinataryName" ng-model="client.name"
                                   required />
                           </div>
                       </div>
@@ -81,7 +81,7 @@
                           <label for="address">
                               Endereço</label>
                           <div class="input-group">
-                              <input type="text" class="form-control" id="address" placeholder="Rua Servidor próprio vale 2 pontos a mais"
+                              <input type="text" class="form-control" id="address" ng-model="client.address.street"
                                   required />
                           </div>
                       </div>
@@ -90,14 +90,14 @@
                               <div class="form-group">
                                   <label for="number">
                                       Numero</label>
-                                      <input type="text" class="form-control" id="number" placeholder="10" required />
+                                      <input type="text" class="form-control" id="number" ng-model="client.address.number" required />
                               </div>
                           </div>
                           <div class="col-xs-8 col-md-8 pull-right">
                               <div class="form-group">
                                   <label for="cep">
                                       CEP</label>
-                                  <input type="text" class="form-control" id="cep" placeholder="01222004" required />
+                                  <input type="text" class="form-control" id="cep" ng-model="client.address.cep" required />
                               </div>
                           </div>
                       </div>

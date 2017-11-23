@@ -37,7 +37,7 @@
       var deferred = $q.defer();
       boleto.api_key = apiKey;
       boleto.cnpj_loja = cnpj;
-      boleto.format = json;
+      boleto.format = 'json';
       boleto.tipo_trans = 1;
       console.log(boleto);
 
@@ -45,7 +45,14 @@
         method:'POST',
         url: url,
         data: boleto,
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json'},
+        transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          }
+          return str.join("&");
+        }
       })
       .success(function(response){
         console.log(response);
@@ -76,16 +83,25 @@
     function postCartaoCredito(cartaoCredito){
       cartaoCredito.api_key = apiKey;
       cartaoCredito.cnpj_loja = cnpj;
-      cartaoCredito.format = json;
+      cartaoCredito.format = 'json';
       cartaoCredito.tipo_trans = 2;
       cartaoCredito.tipo_cartao = 'Credito';
+      cartaoCredito.n_parcelas = 1;
+      cartaoCredito.valor_parcela = cartaoCredito.valor_total;
       console.log(cartaoCredito);
       var deferred = $q.defer();
       $http({
         method:'POST',
         url: url,
         data: cartaoCredito,
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          }
+          return str.join("&");
+        }
       })
       .success(function(response){
         console.log(response);
@@ -110,19 +126,26 @@
     // data_expiracao
     // codigo_verificaccao
     // tipo_cartao
-
     function postCartaoDebito(cartaoDebito){
       cartaoDebito.api_key = apiKey;
       cartaoDebito.cnpj_loja = cnpj;
-      cartaoDebito.format = json;
+      cartaoDebito.format = 'json';
       cartaoCredito.tipo_trans = 3;
+      cartaoCredito.tipo_cartao = 'Debito';
       console.log(cartaoDebito);
       var deferred = $q.defer();
       $http({
         method:'POST',
         url: url,
         data: cartaoDebito,
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          }
+          return str.join("&");
+        }
       })
       .success(function(response){
         console.log(response);
@@ -148,7 +171,14 @@
       $http({
         method:'GET',
         url: url + '?cnpj_loja=45377560000106&format=json&api_key=67f0d3db613474578aed11f37c7f219e&id_trans=' + id_transacao,
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          }
+          return str.join("&");
+        }
       })
       .success(function(response){
         console.log(response);
@@ -168,7 +198,14 @@
       $http({
         method:'GET',
         url: url + 'cnpj_loja=45377560000106&format=json&api_key=67f0d3db613474578aed11f37c7f219e',
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          }
+          return str.join("&");
+        }
       })
       .success(function(response){
         console.log(response);
