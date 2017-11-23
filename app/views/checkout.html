@@ -25,7 +25,7 @@
                           <label for="cardNumber">
                               Numero do Cartão</label>
                           <div class="input-group">
-                              <input type="text" class="form-control" id="cardNumber" placeholder="Numero de cartão válido"
+                              <input type="text" class="form-control" id="cardNumber" ng-model="cartao_credito.numero_cartao" placeholder="Numero de cartão válido"
                                   required autofocus />
                               <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                           </div>
@@ -34,7 +34,7 @@
                           <label for="cardName">
                               Nome do Proprietário</label>
                           <div class="input-group">
-                              <input type="text" class="form-control" id="cardNname" placeholder="Como escrito no cartão"
+                              <input type="text" class="form-control" id="cardNname" ng-model="cartao_credito.nome_cartao" placeholder="Como escrito no cartão"
                                   required />
                           </div>
                       </div>
@@ -44,17 +44,17 @@
                                   <label for="expityMonth">
                                       Data de expiração</label>
                                   <div class="col-xs-6 col-lg-6 pl-ziro">
-                                      <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+                                      <input type="text" class="form-control" id="expityMonth" ng-model="cartao_credito.data_expiracao_mes" placeholder="MM" required />
                                   </div>
                                   <div class="col-xs-6 col-lg-6 pl-ziro">
-                                      <input type="text" class="form-control" id="expityYear" placeholder="YY" required /></div>
+                                      <input type="text" class="form-control" id="expityYear" ng-model="cartao_credito.data_expiracao_ano" placeholder="YY" required /></div>
                               </div>
                           </div>
                           <div class="col-xs-5 col-md-5 pull-right">
                               <div class="form-group">
                                   <label for="cvCode">
                                       CV</label>
-                                  <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+                                  <input type="password" class="form-control" id="cvCode" ng-model="cartao_credito.codigo_verificacao" placeholder="CV" required />
                               </div>
                           </div>
                       </div>
@@ -112,11 +112,11 @@
                 </div>
             </div>
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Valor Final</a>
+                <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>{{total}}</span> Valor Final</a>
                 </li>
             </ul>
             <br/>
-            <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-lg btn-block" role="button">Pagar</a>
+            <a ng-click="pay()" ng-href="" class="btn btn-success btn-lg btn-block" role="button">Pagar</a>
         </div>
     </div>
 </div>

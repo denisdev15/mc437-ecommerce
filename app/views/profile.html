@@ -47,7 +47,6 @@
                   <th style="width:8%">Quantidade</th>
                   <th style="width:15%" class="text-center">Situação do Pagamento</th>
                   <th style="width:15%" class="text-center">Situação da Entrega</th>
-                  <!-- <th style="width:10%"></th> -->
                 </tr>
               </thead>
               <tbody ng-repeat="order in orders">
@@ -66,25 +65,8 @@
                   </td>
                   <td data-th="Pagamento" class="text-center">{{order.paymentStatus}}</td>
                   <td data-th="Entrega" class="text-center">{{order.shippingStatus}}</td>
-                  <!-- <td class="actions" data-th="">
-                    <button class="btn btn-danger btn-sm" ng-click="productChange(product._id, -1)"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-info btn-sm" ng-click="productChange(product._id, 1)"><i class="fa fa-plus"></i></button>
-                  </td> -->
                 </tr>
               </tbody>
-              <!-- <tfoot>
-                <tr class="visible-xs">
-                  <td class="text-center"><strong>Total R${{total | roundTo: 2}}</strong></td>
-                </tr>
-                <tr>
-                  <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Comprando</a></td>
-                  <td>Cep: <input ng-model="cep"> <button ng-click="calcShipping()" ui-br-phone-number>Calcular</button></td>
-                  <td ng-show="frete != null">Frete: R${{frete | roundTo: 2}}</td>
-                  <td ng-hide="frete != null"></td>
-                  <td class="hidden-xs text-center"><strong>Total R${{total | roundTo: 2}}</strong></td>
-                  <td><a href="#/checkout" ng-disabled="frete == null" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
-                </tr>
-              </tfoot> -->
             </table>
           </div>
         </div>
@@ -111,16 +93,11 @@
             <div class="form-actions">
               <div class="col-sm-offset-2 col-sm-10">
                 <div class="pull-right">
-                  <!-- <button type="submit" class="btn btn-default">Cancelar</button> -->
                   <button type="submit" ng-disabled="formAddress.$invalid || dataLoading" class="btn btn-primary">Atualizar</button>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- <div class="form-group">
-          </div> -->
-
 
           <div ng-if="! formAddress.$invalid && hasAddress">
             <!-- Text input-->

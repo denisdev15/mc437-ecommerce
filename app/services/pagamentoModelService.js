@@ -6,6 +6,8 @@
   var config = {headers:  {
         'Content-Type': 'application/json'}
   };
+  var cnpj = '90146311000156'
+  var apiKey = 'f439fa7c6f9659dbe29e872b46bb102d'
 
   app
   .factory('PagamentoModelService', PagamentoModelService);
@@ -32,9 +34,13 @@
     // nome_sacado
     // cpf_sacado
     function postBoletoBancario(boleto){
-      boleto.tipo_trans = 1;
-      console.log(client);
       var deferred = $q.defer();
+      boleto.api_key = apiKey;
+      boleto.cnpj_loja = cnpj;
+      boleto.format = json;
+      boleto.tipo_trans = 1;
+      console.log(boleto);
+
       $http({
         method:'POST',
         url: url,
@@ -63,13 +69,17 @@
     // numero_cartao
     // nome_cartao
     // data_expiracao
-    // codigo_verificaccao
+    // codigo_verificacao
     // tipo_cartao
     // n_parcelas
     // valor_parcela
     function postCartaoCredito(cartaoCredito){
+      cartaoCredito.api_key = apiKey;
+      cartaoCredito.cnpj_loja = cnpj;
+      cartaoCredito.format = json;
       cartaoCredito.tipo_trans = 2;
-      console.log(client);
+      cartaoCredito.tipo_cartao = 'Credito';
+      console.log(cartaoCredito);
       var deferred = $q.defer();
       $http({
         method:'POST',
@@ -102,8 +112,11 @@
     // tipo_cartao
 
     function postCartaoDebito(cartaoDebito){
+      cartaoDebito.api_key = apiKey;
+      cartaoDebito.cnpj_loja = cnpj;
+      cartaoDebito.format = json;
       cartaoCredito.tipo_trans = 3;
-      console.log(client);
+      console.log(cartaoDebito);
       var deferred = $q.defer();
       $http({
         method:'POST',

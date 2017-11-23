@@ -41,11 +41,11 @@
       </tr>
       <tr>
         <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Comprando</a></td>
-        <td>Cep: <input ng-model="cep"> <button ng-click="calcShipping()" ui-br-phone-number>Calcular</button></td>
-        <td ng-show="frete != null">Frete: R${{frete | roundTo: 2}}</td>
-        <td ng-hide="frete != null"></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td class="hidden-xs text-center"><strong>Total R${{total | roundTo: 2}}</strong></td>
-        <td><a href="#/checkout" ng-disabled="frete == null" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+        <td><a href="#/checkout" ng-disabled="total <= 0" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
       </tr>
     </tfoot>
   </table>

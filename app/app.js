@@ -55,13 +55,13 @@ app.config( ['$routeProvider', function($routeProvider)
 
   $rootScope.$on('$locationChangeStart', function (event, next, current) {
     // redirect to login page if not logged in and trying to access a restricted page
-    // var locationPath = $location.path();
-    // // TODO regex
-    // var restrictedPage = ['/home', '/product', '/search'].indexOf(locationPath) === -1;
-    // var loggedIn = $rootScope.globals.currentUser;
-    // if (restrictedPage && !loggedIn) {
-    //   $location.path('/login');
-    // }
+    var locationPath = $location.path();
+    console.log(locationPath);
+    var restrictedPage = locationPath === '/checkout'
+    var loggedIn = $rootScope.globals.currentUser;
+    if (restrictedPage && !loggedIn) {
+      $location.path('/login');
+    }
   });
 }]);
 
