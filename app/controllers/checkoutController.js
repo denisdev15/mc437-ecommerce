@@ -4,7 +4,7 @@
   var app = angular.module('app');
 
   app
-  .controller('CheckoutCtrl', ['$scope', '$rootScope', '$routeParams', 'ProductModelService', 'PagamentoModelService', 'ClientModelService', function($scope, $rootScope, $routeParams, ProductModelService, PagamentoModelService, ClientModelService) {
+  .controller('CheckoutCtrl', ['$scope', '$rootScope', '$routeParams', 'FlashService', 'ProductModelService', 'PagamentoModelService', 'ClientModelService', 'OrderModelService', function($scope, $rootScope, $routeParams, ProductModelService, PagamentoModelService, FlashService, ClientModelService, OrderModelService) {
     $scope.method = 'cartao';
 
     $scope.client = {};
@@ -25,11 +25,35 @@
     };
 
     $scope.pay = function() {
+      $scope.loading = true;
+      $scope.order = {
+        products: $rootScope.products,
+        price: $rootScope.total,
+        userId: $rootScope.globals.currentUser.id;
+      };
       if($scope.method === 'cartao') {
         $scope.cartao_credito.data_expiracao = '20' +  $scope.data_expiracao_ano + '-' + $scope.data_expiracao_mes + '-' + '01';
         $scope.cartao_credito.valor_total = $rootScope.total;
         return PagamentoModelService.postCartaoCredito($scope.cartao_credito).then(function(response) {
-          console.log(response);
+          if(response.msg === 'Transação via credito criada com sucesso') {
+            order.paymentId = response.dados.id_transacao;
+            // TODO Logistica
+            console.log(order);
+            return OrderModelService.createOrder(order).then(function(response) {
+
+              $scope.loading = false;
+            });
+          }
+          else {
+            if(response.msg !== null) {
+              FlashService.Error(response.msg);
+              $scope.loading = false;
+            }
+            else {
+              FlashService.Error('Erro: Não foi possível realizar o pagamento.');
+              $scope.loading = false;
+            }
+          }
         });
       }
       else if($scope.method === 'boleto') {
