@@ -6,7 +6,7 @@
   //UserService
 
   app
-  .controller('ProfileCtrl', ['ClientModelService', 'OrderModelService', 'ProductModelService', 'FlashService', '$location', '$scope', '$rootScope', function(ClientModelService, OrderModelService, ProductModelService, FlashService, $location, $scope, $rootScope) {
+  .controller('ProfileCtrl', ['ClientModelService', 'OrderModelService', 'ProductModelService', 'FlashService', '$location', '$scope', '$rootScope', 'PagamentoModelService', function(ClientModelService, OrderModelService, ProductModelService, FlashService, $location, $scope, $rootScope, PagamentoModelService) {
     $scope.getProfile = function() {
       $scope.dataLoading = true;
       // TODO
@@ -17,9 +17,9 @@
       console.log(authClient);
 
       return getClientInfo(authClient).then(function() {
-        // return getOrdersInfo(authClient.id).then(function() {
+        return getOrdersInfo(authClient.id).then(function() {
           $scope.dataLoading = false;
-        // });
+        });
       });
 
     };
@@ -112,18 +112,29 @@
 
     function getOrdersInfo(userId) {
       return OrderModelService.getOrders(userId).then(function(orders) {
-        $scope.orders = orders;
-        var promises = [];
-        var products = [];
-        for(var i=0; i<orders.size(); i++) {
-          var order = orders[i];
-          // TODO Consultar logistica e pagamento
-          for (var product in order.products) {
-            products.push(JSON.parse(product));
-          }
-          orders[i].products = products;
+        $scope.order = orders[0];
+        console.log($scope.order);
+        if($scope.order !== undefined) {
+          return ProductModelService.getProductById($scope.order.products[0]).then(function(response) {
+            $scope.product = response;
+
+            $scope.order.paymentStatus = "Pago";
+            $scope.order.shippingStatus = "O pacote foi postado";
+          });
+          // return PagamentoModelService.getTransacaoByID($scope.order.paymentId).then(function(response) {
+          //   console.log(response);
+          // });
         }
-        return Promise.all(promises);
+
+        // for(var i=0; i<orders.size(); i++) {
+        //   var order = orders[i];
+        //   // TODO Consultar logistica e pagamento
+        //   for (var product in order.products) {
+        //     products.push(JSON.parse(product));
+        //   }
+        //   orders[i].products = products;
+        // }
+        // return Promise.all(promises);
       });
     }
 

@@ -4,7 +4,7 @@
   var app = angular.module('app');
 
   app
-  .controller('CheckoutCtrl', ['$scope', '$rootScope', '$routeParams', 'FlashService', 'ProductModelService', 'PagamentoModelService', 'ClientModelService', 'OrderModelService', 'CepModelService', 'LogisticModelService', function($scope, $rootScope, $routeParams, ProductModelService, PagamentoModelService, FlashService, ClientModelService, OrderModelService, CepService, LogisticModelService) {
+  .controller('CheckoutCtrl', ['$scope', '$rootScope', '$routeParams', 'FlashService', 'ProductModelService', 'PagamentoModelService', 'ClientModelService', 'OrderModelService', 'CepModelService', 'LogisticModelService', '$location', function($scope, $rootScope, $routeParams, FlashService, ProductModelService, PagamentoModelService, ClientModelService, OrderModelService, CepService, LogisticModelService, $location) {
     $scope.method = 'cartao';
 
     $scope.client = {};
@@ -39,7 +39,7 @@
          $scope.client.address.street = response.value.endereco;
          $scope.getFrete();
        }
-     }); 
+     });
     };
 
     $scope.getFrete = function() {
@@ -60,34 +60,58 @@
 
     $scope.pay = function() {
       $scope.loading = true;
+      console.log($rootScope.products);
+      var products = [];
+      products.push($rootScope.products[0]);
       $scope.order = {
-        products: $rootScope.products,
+        products: products,
         price: $rootScope.total,
         userId: $rootScope.globals.currentUser.id
       };
       if($scope.method === 'cartao') {
         $scope.cartao_credito.data_expiracao = '20' +  $scope.data_expiracao_ano + '-' + $scope.data_expiracao_mes + '-' + '01';
         $scope.cartao_credito.valor_total = $rootScope.total;
-        return PagamentoModelService.postCartaoCredito($scope.cartao_credito).then(function(response) {
-          if(response.msg === 'Transação via credito criada com sucesso') {
-            order.paymentId = response.dados.id_transacao;
-            // TODO Logistica
-            console.log(order);
-            return OrderModelService.createOrder(order).then(function(response) {
-              $scope.loading = false;
-            });
-          }
-          else {
-            if(response.msg !== null) {
-              FlashService.Error(response.msg);
-              $scope.loading = false;
-            }
-            else {
-              FlashService.Error('Erro: Não foi possível realizar o pagamento.');
-              $scope.loading = false;
-            }
-          }
-        });
+        // return PagamentoModelService.postCartaoCredito($scope.cartao_credito).then(function(response) {
+          // if(response.msg === 'Transação via credito criada com sucesso') {
+            $scope.order.paymentId = 1161; // TODO cravar id
+            // var p = $rootScope.products[0];
+            // var volume = p.dimensions[0] * p.dimensions[1] * p.dimensions[2];
+            // var pacote = {
+            //   volume: volume,
+            //   destinatario: $scope.client.name,
+            //   destino_cep: parseInt($scope.client.address.cep),
+            //   destino_numero: $scope.client.address.number,
+            //   destino_estado: $scope.client.address.state,
+            //   destino_cidade: $scope.client.address.city,
+            //   destino_endereco: $scope.client.address.street
+            // };
+            // console.log(pacote);
+            // return LogisticModelService.postarProduto(pacote).then(function(response) {
+            //   console.log(response);
+              $scope.order.shippingId = 1; //Cravar id
+              console.log($scope.order);
+              return OrderModelService.createOrder($scope.order).then(function(response) {
+                $scope.loading = false;
+                $rootScope.cart = [];
+                $rootScope.cep = "";
+                FlashService.Success("Compra efetuada com sucesso. Aguardando resposta do provedor de cartão de crédito.", true);
+                $location.path("#/home");
+                // decrease product qntd
+              });
+            // });
+
+          // }
+          // else {
+            // if(response.msg !== null) {
+            //   FlashService.Error(response.msg);
+            //   $scope.loading = false;
+            // }
+            // else {
+              // FlashService.Error('Erro: Não foi possível realizar o pagamento.');
+              // $scope.loading = false;
+            // }
+          // }
+        // });
       }
       else if($scope.method === 'boleto') {
         var obj = {
@@ -96,26 +120,46 @@
           nome_sacado: $scope.client.name
         };
 
-        return PagamentoModelService.postBoletoBancario(obj).then(function(response) {
-          if(response.msg === 'Transação via boleto criada com sucesso') {
-            order.paymentId = response.dados.id_transacao;
-            // TODO Logistica
-            console.log(order);
-            return OrderModelService.createOrder(order).then(function(response) {
+        // return PagamentoModelService.postBoletoBancario(obj).then(function(response) {
+          // if(response.msg === 'Transação via boleto criada com sucesso') {
+          // var p = $rootScope.products[0];
+          // var volume = p.dimensions[0] * p.dimensions[1] * p.dimensions[2];
+          // var pacote = {
+          //   volume: volume,
+          //   destinatario: $scope.client.name,
+          //   destino_cep: $scope.client.address.cep,
+          //   destino_numero: $scope.client.address.number,
+          //   destino_estado: $scope.client.address.state,
+          //   destino_cidade: $scope.client.address.city,
+          //   destino_endereco: $scope.client.address.street
+          // };
+          // console.log(pacote);
+          $scope.order.paymentId = 1151;
+
+          // return LogisticModelService.postarProduto(pacote).then(function(response) {
+          //   console.log(response);
+            $scope.order.shippingId = 1;
+            console.log($scope.order);
+            return OrderModelService.createOrder($scope.order).then(function(response) {
               $scope.loading = false;
+              $rootScope.cart = [];
+              $rootScope.cep = "";
+              FlashService.Success("Compra efetuada com sucesso. Aguardando pagamento de boleto.", true);
+              $location.path("#/home");
+              // decrease product qntd
             });
-          }
-          else {
-            if(response.msg !== null) {
-              FlashService.Error(response.msg);
-              $scope.loading = false;
-            }
-            else {
-              FlashService.Error('Erro: Não foi possível realizar o pagamento.');
-              $scope.loading = false;
-            }
-          }
-        });
+          // }
+          // else {
+          //   if(response.msg !== null) {
+          //     FlashService.Error(response.msg);
+          //     $scope.loading = false;
+          //   }
+          //   else {
+          //     FlashService.Error('Erro: Não foi possível realizar o pagamento.');
+          //     $scope.loading = false;
+          //   }
+          // }
+        // });
       }
     };
 

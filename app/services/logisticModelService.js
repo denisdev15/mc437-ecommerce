@@ -4,9 +4,6 @@
   var app = angular.module('app');
   var url = 'site-env.mxvnckfmbb.us-east-2.elasticbeanstalk.com/api/';
   var id_site = 5;
-  var config = {headers:  {
-        'Content-Type': 'application/json'}
-  };
 
   app
   .factory('LogisticModelService', LogisticModelService);
@@ -124,12 +121,20 @@
 // destino_numero, destino_estado, destino cidade, destino_endereco e volume (int)
 // A função id (id da postagem), preco e message.
   function postarProduto(pacote){
+    pacote.id_site = id_site;
     var deferred = $q.defer();
-    pacote.id_site = 5;
     $http({
       method:'POST',
-      url: url + '​envio',
-      headers: {'Content-Type': 'application/json'}
+      url: url + 'envio',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: pacote,
+      transformRequest: function(obj) {
+        var str = [];
+        for(var p in obj) {
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
+        return str.join("&");
+      }
     })
     .success(function(response){
       console.log(response);

@@ -49,8 +49,8 @@
                   <th style="width:15%" class="text-center">Situação da Entrega</th>
                 </tr>
               </thead>
-              <tbody ng-repeat="order in orders">
-                <tr ng-repeat="product in order.products">
+              <!-- <tbody ng-repeat="order in orders"> -->
+                <tr>
                   <td data-th="Product">
                     <div class="row">
                       <div class="col-sm-2 hidden-xs"><img ng-src="{{product.img[0]}}" alt="..." class="img-responsive"/></div>
@@ -61,12 +61,12 @@
                     </div>
                   </td>
                   <td data-th="Quantity">
-                    {{product.qtd}}
+                    1
                   </td>
                   <td data-th="Pagamento" class="text-center">{{order.paymentStatus}}</td>
                   <td data-th="Entrega" class="text-center">{{order.shippingStatus}}</td>
                 </tr>
-              </tbody>
+              <!-- </tbody> -->
             </table>
           </div>
         </div>

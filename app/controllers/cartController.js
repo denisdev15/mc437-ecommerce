@@ -5,7 +5,7 @@
 
   app
   .controller('CartCtrl', ['$scope', '$rootScope', '$routeParams', 'ProductModelService' , function($scope, $rootScope, $routeParams, ProductModelService) {
-    $scope.products = [];
+    $rootScope.products = [];
 
     $scope.getCart = function() {
       $rootScope.total = 0;
@@ -13,8 +13,8 @@
         ProductModelService.getProductById(value.productId).then(function(product) {
           product.qtd = value.qtd;
           product.total = product.price * product.qtd;
-          $scope.products.push(product);
-          console.log($scope.products);
+          $rootScope.products.push(product);
+          console.log($rootScope.products);
           $rootScope.total += product.total;
         });
       });
@@ -33,7 +33,7 @@
           }
         }
       });
-      $scope.products = [];
+      $rootScope.products = [];
       $scope.getCart();
     }
 
