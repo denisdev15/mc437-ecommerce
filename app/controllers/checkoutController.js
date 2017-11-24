@@ -4,7 +4,7 @@
   var app = angular.module('app');
 
   app
-  .controller('CheckoutCtrl', ['$scope', '$rootScope', '$routeParams', 'FlashService', 'ProductModelService', 'PagamentoModelService', 'ClientModelService', 'OrderModelService', function($scope, $rootScope, $routeParams, ProductModelService, PagamentoModelService, FlashService, ClientModelService, OrderModelService) {
+  .controller('CheckoutCtrl', ['$scope', '$rootScope', '$routeParams', 'FlashService', 'ProductModelService', 'PagamentoModelService', 'ClientModelService', 'OrderModelService', function($scope, $rootScope, $routeParams, FlashService, ProductModelService, PagamentoModelService, ClientModelService, OrderModelService) {
     $scope.method = 'cartao';
 
     $scope.client = {};
@@ -29,7 +29,7 @@
       $scope.order = {
         products: $rootScope.products,
         price: $rootScope.total,
-        userId: $rootScope.globals.currentUser.id;
+        userId: $rootScope.globals.currentUser.id
       };
       if($scope.method === 'cartao') {
         $scope.cartao_credito.data_expiracao = '20' +  $scope.data_expiracao_ano + '-' + $scope.data_expiracao_mes + '-' + '01';

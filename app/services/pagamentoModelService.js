@@ -6,8 +6,8 @@
   var config = {headers:  {
         'Content-Type': 'application/json'}
   };
-  var cnpj = '90146311000156'
-  var apiKey = 'f439fa7c6f9659dbe29e872b46bb102d'
+  var cnpj = '90146311000156';
+  var apiKey = 'f439fa7c6f9659dbe29e872b46bb102d';
 
   app
   .factory('PagamentoModelService', PagamentoModelService);
@@ -15,7 +15,6 @@
   PagamentoModelService.$inject = ['$http', '$log', '$q'];
   function PagamentoModelService($http, $log, $q) {
     var service = {};
-
 
     service.postBoletoBancario = postBoletoBancario;
     service.postCartaoCredito = postCartaoCredito;
