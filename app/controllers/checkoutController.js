@@ -12,7 +12,11 @@
     $scope.init = function() {
       var authClient = getAuthClient();
       return ClientModelService.getClient(authClient).then(function(client) {
-        $scope.client = client.payload;
+        $scope.client = {
+          cpf: client.payload.cpf,
+          name: client.payload.name
+        };
+
         return ClientModelService.getAddress(authClient).then(function(response) {
           if(response['error_code']) {
             $scope.client.address = {};
@@ -40,7 +44,6 @@
             // TODO Logistica
             console.log(order);
             return OrderModelService.createOrder(order).then(function(response) {
-
               $scope.loading = false;
             });
           }
@@ -57,7 +60,32 @@
         });
       }
       else if($scope.method === 'boleto') {
+        var obj = {
+          valor_total: $rootScope.total,
+          cpf_sacado: $scope.client.cpf,
+          nome_sacado: $scope.client.name
+        };
 
+        return PagamentoModelService.postBoletoBancario(obj).then(function(response) {
+          if(response.msg === 'Transação via boleto criada com sucesso') {
+            order.paymentId = response.dados.id_transacao;
+            // TODO Logistica
+            console.log(order);
+            return OrderModelService.createOrder(order).then(function(response) {
+              $scope.loading = false;
+            });
+          }
+          else {
+            if(response.msg !== null) {
+              FlashService.Error(response.msg);
+              $scope.loading = false;
+            }
+            else {
+              FlashService.Error('Erro: Não foi possível realizar o pagamento.');
+              $scope.loading = false;
+            }
+          }
+        });
       }
     };
 

@@ -3,9 +3,6 @@
 
   var app = angular.module('app');
   var url = 'https://orangopag.herokuapp.com/index.php/api/Transacoes';
-  var config = {headers:  {
-        'Content-Type': 'application/json'}
-  };
   var cnpj = '90146311000156';
   var apiKey = 'f439fa7c6f9659dbe29e872b46bb102d';
 
@@ -44,7 +41,7 @@
         method:'POST',
         url: url,
         data: boleto,
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         transformRequest: function(obj) {
           var str = [];
           for(var p in obj) {
