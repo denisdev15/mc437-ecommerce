@@ -75,7 +75,7 @@
 // objeto logistica -> id_site (integer - nosso site é o 5), destino_cep (int[8]), destino_numero (int(11)),
 // destino_estado (string[2]), destino_cidade (string), destino_endereco (string), volume (int)
 // a função retorna um objeto com: preco, tempo e message.
-    function consultaPrazoPreco(logisitca){
+    function consultaPrazoPreco(logistica){
       var deferred = $q.defer();
       logistica.id_site = id_site;
       $http({

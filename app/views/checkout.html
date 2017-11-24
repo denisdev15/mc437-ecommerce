@@ -78,14 +78,24 @@
                           </div>
                       </div>
                       <div class="form-group">
-                          <label for="address">
-                              Endereço</label>
-                          <div class="input-group">
-                              <input type="text" class="form-control" id="address" ng-model="client.address.street"
-                                  required />
+                          <div>
+                              <div class="form-group">
+                                  <label for="cep">
+                                      CEP</label>
+                                  <input type="text" class="form-control" id="cep" ng-model="client.address.cep" required />
+                                  <a ng-click="getAdressWithCep()" ng-show="(client.address.needCep)" ng-hide"client.address.needCep == false" class="btn btn-success btn-sm" role="button">Preencher</a>
+                              </div>
                           </div>
                       </div>
                       <div class="row">
+                        <div class="col-xs-9 col-md-9">
+                          <label for="address">
+                              Endereço</label>
+                          <div class="input-group">
+                              <input type="text" class="form-control" id="address" ng-model="client.address.street" ng-disabled="client.address.needCep"
+                                  required />
+                          </div>
+                        </div>
                           <div class="col-xs-3 col-md-3">
                               <div class="form-group">
                                   <label for="number">
@@ -93,30 +103,20 @@
                                       <input type="text" class="form-control" id="number" ng-model="client.address.number" required />
                               </div>
                           </div>
-                          <div class="col-xs-8 col-md-8 pull-right">
-                              <div class="form-group">
-                                  <label for="cep">
-                                      CEP</label>
-                                  <input type="text" class="form-control" id="cep" ng-model="client.address.cep" required />
-                              </div>
-                          </div>
                       </div>
                       </form>
                     </div>
 
                     <!-- Review do pedido -->
-                    <div class="col-4" style="margin-top:15px">
-                      <p>Inserir aqui a review do pedido</p>
+                    <div class="col-4" style="margin-top:15px" ng-hide="(frete == false)">
+                      <div><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>{{frete}}</span> Frete</div>
+                      <div><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>{{total + frete}}</span> Valor Final</div>
                     </div>
                 </div>
                 </div>
             </div>
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>{{total}}</span> Valor Final</a>
-                </li>
-            </ul>
             <br/>
-            <a ng-click="pay()" ng-href="" class="btn btn-success btn-lg btn-block" role="button">Pagar</a>
+            <a ng-click="pay()" ng-hide="(frete == false)" ng-href="" class="btn btn-success btn-lg btn-block" role="button">Pagar</a>
         </div>
     </div>
 </div>
